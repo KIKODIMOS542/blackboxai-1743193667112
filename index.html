@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #71717a transparent;
+        }
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.03);
+            transition: transform 0.2s ease;
+        }
+        /* Loading spinner */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top: 3px solid #ff0000;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            aside {
+                width: 70px;
+            }
+            main {
+                margin-left: 70px;
+            }
+            .sidebar span {
+                display: none;
+            }
+            .sidebar i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#0f0f0f] text-white transition-colors duration-200">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-[#0f0f0f] z-50 flex items-center px-4 h-14 border-b border-[#303030]">
+        <div class="flex items-center">
+            <i class="fas fa-bars mr-4 text-xl cursor-pointer"></i>
+            <div class="flex items-center">
+                <span class="text-blue-500 font-medium mr-4">KIKODIMOS DEVELOPED THIS APP</span>
+                <div class="flex items-center cursor-pointer">
+                    <i class="fab fa-youtube text-2xl text-red-600 mr-1"></i>
+                    <span class="font-bold text-xl">DIMOSFAMTUBE</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center mx-4">
+            <div class="flex w-full max-w-2xl">
+                <input type="text" placeholder="Search" class="w-full bg-[#121212] border border-[#303030] px-4 py-2 rounded-l-full focus:outline-none focus:border-blue-500">
+                <button class="bg-[#222222] px-5 rounded-r-full border border-l-0 border-[#303030]">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <div class="relative group">
+                <i class="fas fa-video text-xl cursor-pointer mr-4" id="upload-btn"></i>
+                <div class="absolute hidden group-hover:block bg-[#282828] text-white text-sm p-2 rounded right-0 top-full mt-1 w-40">
+                    <div class="p-2 hover:bg-[#3d3d3d] rounded cursor-pointer">
+                        <i class="fas fa-upload mr-2"></i> Upload Video
+                    </div>
+                    <div class="p-2 hover:bg-[#3d3d3d] rounded cursor-pointer">
+                        <i class="fas fa-live mr-2"></i> Go Live
+                    </div>
+                </div>
+            </div>
+            <i class="fas fa-bell text-xl cursor-pointer"></i>
+            <div class="w-8 h-8 rounded-full bg-blue-500 cursor-pointer"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex pt-14">
+        <!-- Sidebar -->
+        <aside class="w-60 h-[calc(100vh-56px)] overflow-y-auto sidebar fixed bg-[#0f0f0f]">
+            <div class="py-2">
+                <div class="px-4 py-2 flex items-center rounded-lg hover:bg-[#272727] cursor-pointer">
+                    <i class="fas fa-compass mr-6 text-xl"></i>
+                    <span>Explore Videos</span>
+                </div>
+                <hr class="border-[#303030] my-2">
+                <div class="px-4 py-2 flex items-center rounded-lg hover:bg-[#272727] cursor-pointer">
+                    <i class="fas fa-photo-video mr-6 text-xl"></i>
+                    <span>Your Uploads</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Video Grid -->
+        <main class="ml-60 p-4 flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Video Cards Template -->
+            <!-- Replace the example below with your videos -->
+            <!-- Format:
+            <div class="video-card cursor-pointer">
+                <div class="relative">
+                    <img src="YOUR_THUMBNAIL_URL" alt="Video thumbnail" class="w-full rounded-xl video-thumbnail">
+                    <span class="absolute bottom-1 right-1 bg-black bg-opacity-80 px-1 text-xs rounded">DURATION</span>
+                </div>
+                <div class="mt-2 flex">
+                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-medium line-clamp-2">VIDEO_TITLE</h3>
+                        <p class="text-gray-400 text-sm">CHANNEL_NAME • VIEWS • TIME_AGO</p>
+                    </div>
+                </div>
+            </div>
+            -->
+            
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="relative pb-[56.25%]"> <!-- 16:9 aspect ratio -->
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/q5KZgqqOmec?autoplay=0&rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="mt-2 flex">
+                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-medium line-clamp-2">Best Coding Music Mix 2023</h3>
+                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 500K views • 8 months ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="relative pb-[56.25%]">
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/XqLoysgAvJc?autoplay=0&rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="mt-2 flex">
+                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-medium line-clamp-2">Programming Motivation Mix</h3>
+                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 750K views • 1 year ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="relative pb-[56.25%]">
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/H2v1GnDmLHI?autoplay=0&rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="mt-2 flex">
+                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-medium line-clamp-2">Focus Coding Session</h3>
+                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 1.2M views • 1 year ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="relative pb-[56.25%]">
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/WSvX9NwtTk4?autoplay=0&rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="mt-2 flex">
+                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-medium line-clamp-2">Late Night Coding Vibes</h3>
+                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 900K views • 10 months ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="video-card">
+                <div class="relative pb-[56.25%]">
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-xl"
+                        src="https://www.youtube.com/embed/TVuipQx5zYY?autoplay=0&rel=0"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="mt-2 flex">
+                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                    <div>
+                        <h3 class="font-medium line-clamp-2">Ultimate Developer Playlist</h3>
+                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 1.5M views • 1 year ago</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="loader" id="loading-spinner"></div>
+    </div>
+    <script>
+        // Simulate content loading
+        document.addEventListener('DOMContentLoaded', () => {
+            const spinner = document.getElementById('loading-spinner');
+            spinner.style.display = 'block';
+            setTimeout(() => {
+                spinner.style.display = 'none';
+            }, 1000);
+
+            // Upload button functionality
+            document.getElementById('upload-btn').addEventListener('click', () => {
+                const videoUrl = prompt('Enter YouTube video URL to add to DIMOSFAMILY DEVELOPMENT:');
+                if (videoUrl) {
+                    const videoId = extractVideoId(videoUrl);
+                    if (videoId) {
+                        addVideoCard(videoId);
+                    } else {
+                        alert('Invalid YouTube URL');
+                    }
+                }
+            });
+
+            function extractVideoId(url) {
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                const match = url.match(regExp);
+                return (match && match[2].length === 11) ? match[2] : null;
+            }
+
+            function addVideoCard(videoId) {
+                const videoTitle = prompt('Enter video title:') || 'New Video';
+                const videoGrid = document.querySelector('main');
+                const newCard = document.createElement('div');
+                newCard.className = 'video-card';
+                newCard.innerHTML = `
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">${videoTitle}</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 0 views • Just now</p>
+                        </div>
+                    </div>
+                `;
+                videoGrid.prepend(newCard);
+                alert('Video uploaded to DIMOSFAMILY DEVELOPMENT!');
+            }
+        });
+    </script>
+</body>
+</html>
