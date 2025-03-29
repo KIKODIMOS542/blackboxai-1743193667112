@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Clone</title>
+    <title>dimosfamtube.com</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -60,7 +60,7 @@
                 <span class="text-blue-500 font-medium mr-4">KIKODIMOS DEVELOPED THIS APP</span>
                 <div class="flex items-center cursor-pointer">
                     <i class="fab fa-youtube text-2xl text-red-600 mr-1"></i>
-                    <span class="font-bold text-xl">DIMOSFAMTUBE</span>
+                    <span class="font-bold text-xl">dimosfamtube.com</span>
                 </div>
             </div>
         </div>
@@ -75,21 +75,35 @@
         </div>
         
         <div class="flex items-center space-x-4">
-            <div class="relative group">
-                <i class="fas fa-video text-xl cursor-pointer mr-4" id="upload-btn"></i>
-                <div class="absolute hidden group-hover:block bg-[#282828] text-white text-sm p-2 rounded right-0 top-full mt-1 w-40">
-                    <div class="p-2 hover:bg-[#3d3d3d] rounded cursor-pointer">
-                        <i class="fas fa-upload mr-2"></i> Upload Video
-                    </div>
-                    <div class="p-2 hover:bg-[#3d3d3d] rounded cursor-pointer">
-                        <i class="fas fa-live mr-2"></i> Go Live
-                    </div>
+            <button id="upload-video" class="flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+                <i class="fas fa-upload mr-2"></i> Upload Video
+            </button>
+            
+            <div class="flex items-center ml-4">
+                <i class="fab fa-discord text-2xl text-[#5865F2] mr-2"></i>
+                <span class="text-white">kikodimos_developer</span>
+            </div>
+        </div>
+        </header>
+
+        <!-- Upload Modal -->
+        <div id="upload-modal" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-50 flex items-start justify-center pt-20">
+            <div class="bg-[#282828] rounded-lg p-6 w-full max-w-md">
+                <h3 class="text-xl font-bold mb-4" id="modal-title">Upload Video</h3>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Video URL</label>
+                    <input type="text" id="video-url" class="w-full bg-[#404040] rounded px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">Video Title</label>
+                    <input type="text" id="video-title" class="w-full bg-[#404040] rounded px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button id="cancel-upload" class="px-4 py-2 rounded hover:bg-[#404040] transition">Cancel</button>
+                    <button id="confirm-upload" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition">Upload</button>
                 </div>
             </div>
-            <i class="fas fa-bell text-xl cursor-pointer"></i>
-            <div class="w-8 h-8 rounded-full bg-blue-500 cursor-pointer"></div>
         </div>
-    </header>
 
     <!-- Main Content -->
     <div class="flex pt-14">
@@ -108,163 +122,258 @@
             </div>
         </aside>
 
-        <!-- Video Grid -->
-        <main class="ml-60 p-4 flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <!-- Video Cards Template -->
-            <!-- Replace the example below with your videos -->
-            <!-- Format:
-            <div class="video-card cursor-pointer">
-                <div class="relative">
-                    <img src="YOUR_THUMBNAIL_URL" alt="Video thumbnail" class="w-full rounded-xl video-thumbnail">
-                    <span class="absolute bottom-1 right-1 bg-black bg-opacity-80 px-1 text-xs rounded">DURATION</span>
-                </div>
-                <div class="mt-2 flex">
-                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium line-clamp-2">VIDEO_TITLE</h3>
-                        <p class="text-gray-400 text-sm">CHANNEL_NAME • VIEWS • TIME_AGO</p>
+        <!-- Main Video Section -->
+        <section class="ml-60 p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold">dimosfamtube.com VIDEOS</h2>
+                <button id="upload-video" class="flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+                    <i class="fas fa-upload mr-2"></i> Upload Video
+                </button>
+            </div>
+            <div id="video-content" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/q5KZgqqOmec?autoplay=0&rel=0"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">KIKOTEST 1</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 500K views • 8 months ago</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            -->
-            
-            <!-- Video 1 -->
-            <div class="video-card">
-                <div class="relative pb-[56.25%]"> <!-- 16:9 aspect ratio -->
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/q5KZgqqOmec?autoplay=0&rel=0"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="mt-2 flex">
-                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium line-clamp-2">Best Coding Music Mix 2023</h3>
-                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 500K views • 8 months ago</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Video 2 -->
-            <div class="video-card">
-                <div class="relative pb-[56.25%]">
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/XqLoysgAvJc?autoplay=0&rel=0"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="mt-2 flex">
-                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium line-clamp-2">Programming Motivation Mix</h3>
-                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 750K views • 1 year ago</p>
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/XqLoysgAvJc?autoplay=0&rel=0"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">KIKOTEST 2</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 750K views • 1 year ago</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Video 3 -->
-            <div class="video-card">
-                <div class="relative pb-[56.25%]">
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/H2v1GnDmLHI?autoplay=0&rel=0"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="mt-2 flex">
-                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium line-clamp-2">Focus Coding Session</h3>
-                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 1.2M views • 1 year ago</p>
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/H2v1GnDmLHI?autoplay=0&rel=0"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">KIKOTEST 3</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1.2M views • 1 year ago</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Video 4 -->
-            <div class="video-card">
-                <div class="relative pb-[56.25%]">
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/WSvX9NwtTk4?autoplay=0&rel=0"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="mt-2 flex">
-                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium line-clamp-2">Late Night Coding Vibes</h3>
-                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 900K views • 10 months ago</p>
+                <!-- Video 4 -->
+                <div class="video-card">
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/WSvX9NwtTk4?autoplay=0&rel=0"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">KIKOTEST 4</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 900K views • 10 months ago</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Video 5 -->
-            <div class="video-card">
-                <div class="relative pb-[56.25%]">
-                    <iframe 
-                        class="absolute top-0 left-0 w-full h-full rounded-xl"
-                        src="https://www.youtube.com/embed/TVuipQx5zYY?autoplay=0&rel=0"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                <!-- Video 5 -->
+                <div class="video-card">
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/TVuipQx5zYY?autoplay=0&rel=0"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">KIKOTEST 5</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1.5M views • 1 year ago</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-2 flex">
-                    <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
-                    <div>
-                        <h3 class="font-medium line-clamp-2">Ultimate Developer Playlist</h3>
-                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M subscribers • 1.5M views • 1 year ago</p>
+
+                <!-- Video 6 - mikidimos-DA ILI NE -->
+                <div class="video-card">
+                    <div class="relative pb-[56.25%]">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/ky-leGKmSzw?autoplay=0&rel=0"
+                            frameborder="0"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-2 flex">
+                        <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="font-medium line-clamp-2">mikidimos-DA ILI NE</h3>
+                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 1M views</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </section>
+
         <div class="loader" id="loading-spinner"></div>
     </div>
-    <script>
+        <script>
+            // Verify critical elements exist
+            function verifyElements() {
+                const requiredElements = [
+                    'upload-youtube', 'upload-tiktok', 'upload-modal',
+                    'video-url', 'video-title', 'confirm-upload'
+                ];
+                
+                requiredElements.forEach(id => {
+                    if (!document.getElementById(id)) {
+                        console.error('Missing element:', id);
+                        return false;
+                    }
+                });
+                return true;
+            }
+            
+            if (!verifyElements()) {
+                alert('Page failed to load properly. Please refresh.');
+            }
         // Simulate content loading
         document.addEventListener('DOMContentLoaded', () => {
             const spinner = document.getElementById('loading-spinner');
             spinner.style.display = 'block';
+            
+            // Load saved videos
+            const savedVideos = JSON.parse(localStorage.getItem('dimosfamVideos')) || [];
+            const videoGrid = document.querySelector('main');
+            
+            savedVideos.forEach(video => {
+                const newCard = createVideoCard(video.id, video.title);
+                videoGrid.appendChild(newCard);
+            });
+
             setTimeout(() => {
                 spinner.style.display = 'none';
             }, 1000);
 
-            // Upload button functionality
-            document.getElementById('upload-btn').addEventListener('click', () => {
-                const videoUrl = prompt('Enter YouTube video URL to add to DIMOSFAMILY DEVELOPMENT:');
-                if (videoUrl) {
-                    const videoId = extractVideoId(videoUrl);
-                    if (videoId) {
-                        addVideoCard(videoId);
-                    } else {
-                        alert('Invalid YouTube URL');
-                    }
-                }
+
+            // Upload button handler
+            document.getElementById('upload-video').addEventListener('click', () => {
+                document.getElementById('upload-modal').classList.remove('hidden');
+                document.getElementById('modal-title').textContent = 'Upload Video';
+                document.getElementById('video-url').placeholder = 'Enter YouTube video URL';
             });
 
-            function extractVideoId(url) {
+            // Modal button handlers
+            document.getElementById('cancel-upload').addEventListener('click', () => {
+                document.getElementById('upload-modal').classList.add('hidden');
+                resetUploadForm();
+            });
+
+            document.getElementById('confirm-upload').addEventListener('click', handleUpload);
+
+            function resetUploadForm() {
+                document.getElementById('video-url').value = '';
+                document.getElementById('video-title').value = '';
+            }
+
+            function handleUpload() {
+                const url = document.getElementById('video-url').value.trim();
+                const title = document.getElementById('video-title').value.trim() || 'Untitled Video';
+                
+                if (!url) {
+                    alert('Please enter a YouTube video URL');
+                    return;
+                }
+
+                const spinner = document.getElementById('loading-spinner');
+                spinner.style.display = 'block';
+                document.getElementById('confirm-upload').disabled = true;
+
+                setTimeout(() => {
+                    try {
+                        const videoId = extractYoutubeId(url);
+                        if (!videoId) {
+                            throw new Error('Invalid YouTube URL');
+                        }
+
+                        addVideoCard(videoId, title, false);
+                        document.getElementById('upload-modal').classList.add('hidden');
+                        resetUploadForm();
+                    } catch (error) {
+                        alert(error.message);
+                    } finally {
+                        spinner.style.display = 'none';
+                        document.getElementById('confirm-upload').disabled = false;
+                    }
+                }, 1000);
+            }
+
+            // Initialize when page loads
+            window.onload = function() {
+                // Load any saved videos
+                try {
+                    const youtubeVideos = JSON.parse(localStorage.getItem('dimosfamVideos')) || [];
+                    const tiktokVideos = JSON.parse(localStorage.getItem('dimosfamTiktoks')) || [];
+                    
+                    youtubeVideos.forEach(v => addVideoCard(v.id, v.title, false));
+                    tiktokVideos.forEach(v => addVideoCard(v.id, v.title, true));
+                } catch (e) {
+                    console.log('Error loading videos:', e);
+                }
+            };
+
+            function extractYoutubeId(url) {
                 const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                 const match = url.match(regExp);
                 return (match && match[2].length === 11) ? match[2] : null;
             }
 
-            function addVideoCard(videoId) {
-                const videoTitle = prompt('Enter video title:') || 'New Video';
-                const videoGrid = document.querySelector('main');
+            function createVideoCard(videoId, videoTitle, isTiktok = false) {
                 const newCard = document.createElement('div');
                 newCard.className = 'video-card';
-                newCard.innerHTML = `
-                    <div class="relative pb-[56.25%]">
+                const embedHtml = isTiktok ? `
+                    <div class="relative pb-[125%] group" data-video-id="${videoId}">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full rounded-xl"
+                            src="https://www.tiktok.com/embed/v2/${videoId}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>` : `
+                    <div class="relative pb-[56.25%] group" data-video-id="${videoId}">
                         <iframe 
                             class="absolute top-0 left-0 w-full h-full rounded-xl"
                             src="https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0"
@@ -272,17 +381,56 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
+                    </div>`;
+                
+                newCard.innerHTML = embedHtml + `
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-white text-sm flex items-center">
+                                        <i class="fas fa-eye mr-1"></i> 1.2K views
+                                    </span>
+                                    <span class="text-white text-sm flex items-center">
+                                        <i class="fas fa-thumbs-up mr-1"></i> 245
+                                    </span>
+                                </div>
+                            <span class="text-white font-bold">DIMOSFAMILY DEVELOPMENT</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-2 flex">
                         <div class="w-9 h-9 rounded-full bg-gray-500 mr-2 flex-shrink-0"></div>
                         <div>
                             <h3 class="font-medium line-clamp-2">${videoTitle}</h3>
-                            <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 0 views • Just now</p>
+                        <p class="text-gray-400 text-sm">DIMOSFAMILY DEVELOPMENT • 0 views • Just now</p>
                         </div>
                     </div>
                 `;
-                videoGrid.prepend(newCard);
-                alert('Video uploaded to DIMOSFAMILY DEVELOPMENT!');
+                return newCard;
+            }
+
+
+            function addVideoCard(videoId, videoTitle) {
+                try {
+                    const videoGrid = document.getElementById('video-content');
+                    const newCard = createVideoCard(videoId, videoTitle);
+                    videoGrid.prepend(newCard);
+                    
+                    // Save to localStorage
+                    const savedVideos = JSON.parse(localStorage.getItem('dimosfamVideos')) || [];
+                    savedVideos.unshift({
+                        id: videoId,
+                        title: videoTitle,
+                        timestamp: new Date().toISOString()
+                    });
+                    localStorage.setItem('dimosfamVideos', JSON.stringify(savedVideos));
+                    
+                    // Show success message
+                    alert('YouTube video added successfully!');
+                } catch (error) {
+                    console.error('Error adding video:', error);
+                    alert('Failed to add video. Please try again.');
+                }
             }
         });
     </script>
